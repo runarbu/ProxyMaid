@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProxyMaid.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProxyJudge" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://azenv.net/</Value>
+    </Setting>
+    <Setting Name="ProxyTimeOut" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="ProxyOutFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\temp\proxys.txt</Value>
+    </Setting>
+    <Setting Name="ProxyOutTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ProxySource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/public.txt</Value>
+    </Setting>
+    <Setting Name="ProxyMinAnonymity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">High</Value>
+    </Setting>
+    <Setting Name="Debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UsePublicProxySources" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

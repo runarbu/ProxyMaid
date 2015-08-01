@@ -1,0 +1,29 @@
+# This is a list of websites that ProxyMaid will use to get public proxies.
+#
+# One website pr line. Lines starting with # are considered comments.
+#
+#http://proxylist.hidemyass.com/
+#http://www.samair.ru/proxy/
+#http://www.blackhatworld.com/blackhat-seo/proxy-lists/753956-new-fresh-big-proxy-lists-worldwide-usa-elite-proxies-updated-daily-2.html
+http://www.us-proxy.org/
+http://www.xroxy.com/proxylist.htm
+http://free-proxy-list.net/
+http://www.mrhinkydink.com/proxies.htm
+http://www.cool-proxy.net/
+http://www.proxynova.com/proxy-server-list/country-us/
+
+
+http://www.proxynova.com/proxy-server-list/
+http://www.proxynova.com/proxy-server-list/country-cn/
+http://www.proxynova.com/proxy-server-list/country-ve/
+http://www.proxynova.com/proxy-server-list/country-de/
+http://www.proxynova.com/proxy-server-list/country-gb/
+http://www.proxynova.com/proxy-server-list/country-ru/
+http://www.proxynova.com/proxy-server-list/country-in/
+http://www.proxynova.com/proxy-server-list/country-br/
+http://www.proxynova.com/proxy-server-list/country-id/
+http://www.proxynova.com/proxy-server-list/country-ru/
+http://www.proxynova.com/proxy-server-list/country-fr/
+http://www.gatherproxy.com/
+http://free-proxy.cz/en/
+http://www.idcloak.com/proxylist/proxy-list.html
