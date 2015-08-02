@@ -33,25 +33,45 @@ namespace ProxyMaid
             // Hardcoded list of bad and good headers. 
             Dictionary<string, bool> revealingheader = new Dictionary<string, bool>()
 	        {
-                {"HTTP_X_REAL_IP", true},
-                {"HTTP_X_FORWARDED_FOR", true},
-                {"HTTP_PROXY_CONNECTION", true},
+                {"HTTP_CACHE_CONTROL", true},
+                {"HTTP_CDN_SRC_IP", true},
                 {"HTTP_CLIENT_IP", true},
-                {"HTTP_VIA", true},
-                {"HTTP_X_BLUECOAT_VIA", true},
+                {"HTTP_REFERER", true},
+                {"HTTP_IF_NONE_MATCH", true},
+                {"HTTP_IF_MODIFIED_SINCE", true},
                 {"HTTP_MAX_FORWARDS", true},
-                {"HTTP_HOST", false},
-                {"HTTP_CACHE_CONTROL", false},
+                {"HTTP_OCT_MAX_AGE", true},
+                {"HTTP_PROXY_AGENT", true},
+                {"HTTP_PROXY_CONNECTION", true},
+                {"HTTP_VIA", true},
+                {"HTTP_X_ACCEPT_ENCODING_PRONTOWIFI", true},
+                {"HTTP_X_BLUECOAT_VIA", true},
+                {"HTTP_X_FORWARDED_FOR", true},
+                {"HTTP_X_FORWARD_FOR", true},
+                {"HTTP_X_FORWARDED_HOST", true},
+                {"HTTP_X_FORWARDED_SERVER", true},
+                {"HTTP_X_MATO_PARAM", true},
+                {"HTTP_X_NAI_ID", true},
+                {"HTTP_X_PROXY_ID", true},
+                {"HTTP_X_REAL_IP", true},
+                {"HTTP_X_VIA", true},
+                {"HTTP_XCNOOL_REMOTE_ADDR", true},
+                {"HTTP_XROXY_CONNECTION", true},
+                {"HTTP_XXPECT", true},
+
                 {"HTTP_ACCEPT", false},
+                {"HTTP_ACCEPT_ENCODING", false},
+                {"HTTP_ACCEPT_LANGUAGE", false},
                 {"HTTP_CONNECTION", false},
+                {"HTTP_HOST", false},
+                {"HTTP_USER_AGENT", false},
                 {"REMOTE_ADDR", false},
                 {"REMOTE_PORT", false},
                 {"REQUEST_METHOD", false},
-                {"REQUEST_URI", false},
-                {"REQUEST_TIME_FLOAT", false},
                 {"REQUEST_TIME", false},
-                {"HTTP_ACCEPT_ENCODING", false},
-                {"HTTP_USER_AGENT", false}
+                {"REQUEST_TIME_FLOAT", false},
+                {"REQUEST_URI", false},
+
 	        };
 
             Thread.CurrentThread.Name = "ProxyChecker";
@@ -84,7 +104,7 @@ namespace ProxyMaid
                 _Global.log("Trying to connect to " + server.Ip + ":" + server.Port);
 
                 string anonymity = "";
-                string status = "Ok";
+                string status = "";
 
                 try
                 {
@@ -135,46 +155,53 @@ namespace ProxyMaid
                     {
                         throw new Exception("Emty response");
                     }
-                    else if (result.IndexOf("REQUEST_URI") == -1)
+
+                    if (result.IndexOf("REQUEST_URI") == -1)
                     {
-                        throw new Exception("Did not find header info. The proxy may thamber with the response");
+                        throw new Exception("Did not find header info. The proxy may tamper with the response");
                     }
-                    else if (result.IndexOf(ip) != -1) {
-                        _Global.log(server.Ip + ": Found ip in results");
+
+                    
+                    // Will go troght black and whitlist to see what level of anonymity this server provides
+                    foreach (KeyValuePair<string, string> value in values)
+                    {
+                        bool revealing;
+                        if (revealingheader.TryGetValue(value.Key, out revealing)) // Returns true.
+                        {
+                            if (revealing)
+                            {
+                                anonymity = "Low";
+                                _Global.log("Found revealing header " + value.Key + " : " + value.Value);
+                                status += "Found revealing header " + value.Key + " = " + value.Value + ". ";
+                            }
+                        }
+                        else {
+                            anonymity = "Low";
+                            _Global.log("Have unknown header '" + value.Key + " : " + value.Value);
+                            status += "Have unknown header '" + value.Key + " : " + value.Value + ". ";
+                        }
+                    }
+
+                    
+
+                    if (result.IndexOf(ip) != -1)
+                    {
+                        _Global.log(server.Ip + ": Have your ip in results");
+                        status += "Have your ip in results. ";
                         anonymity = "None";
                     }
-                    else
+
+                    // No ip and not proxy filds found
+                    if (anonymity == "")
                     {
-                        // Will go troght black and whitlist to see what level of anonymity this server provides
-                        bool found = false;
-                        foreach (KeyValuePair<string, string> value in values)
-                        {
-                            bool revealing;
-                            if (revealingheader.TryGetValue(value.Key, out revealing)) // Returns true.
-                            {
-                                if (revealing)
-                                {
-                                    anonymity = "Low";
-                                    found = true;
-                                    _Global.log("Found revealingheader " + value.Key + " : " + value.Value);
-                                }
-                            }
-                            else {
-                                anonymity = "Low";
-                                found = true;
-                                _Global.log("Have unknown header '" + value.Key + " : " + value.Value);
-                            }
-                        }
-
-                        // If we have not 
-                        if (found == false) {
-                            anonymity = "High";
-                        }
+                        anonymity = "High";
+                        status = "Ok";
                     }
-                    
-                    
+                    else {
+                        status = "Ok (" + status + ")";
+                    }
 
-                    _Global.log(server.Ip + " ok");                    
+                    _Global.log(server.Ip + ": anonymity=" + anonymity + ", status=" + status);                    
                       
                 }
                 catch (Exception ex)
@@ -199,7 +226,7 @@ namespace ProxyMaid
 
                     lock (_Global.ProxySources)
                     {
-                        if (status == "Ok")
+                        if (status.Substring(0,2) == "Ok")
                         {
                             source.Working += 1;
                         }
