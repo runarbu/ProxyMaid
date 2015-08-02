@@ -1,1 +1,5 @@
 src/ProxyMaid/PhantomJS/phantomjs.exe
+src/ProxyMaid/obj/Debug
+src/ProxyMaid/bin/Debug
+src/ProxyMaid/bin/Release
+src/ProxyMaid/publish
