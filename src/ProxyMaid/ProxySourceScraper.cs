@@ -49,7 +49,7 @@ namespace ProxyMaid
             shutdown = true;
         }
 
-        private int ExtractProxies(string sourceurl, string result)
+        private int ExtractProxies(string sourceurl, string result, List<string> banned)
         {
             int found = 0;
 
@@ -61,7 +61,15 @@ namespace ProxyMaid
 
                 lock (_Global.ProxyServers)
                 {
-                    if (_Global.ProxyServers.Any(s => s.Ip == server[0]) == false)
+                    if (_Global.ProxyServers.Any(s => s.Ip == server[0]) == true)
+                    {
+                        //_Global.log("Skippet known ip " + server[0]);
+                    }
+                    else if (banned != null && banned.Exists(s => s == server[0]) == true)
+                    {
+                        _Global.log("Skippet banned ip " + server[0]);
+                    }
+                    else 
                     {
                         _Global.ProxyServers.Add(new ProxyServer(_Form, server[0], Convert.ToInt32(server[1]), sourceurl));
 
@@ -74,12 +82,61 @@ namespace ProxyMaid
             return found;
         }
 
+        public List<string> getList(string url)
+        {
+
+            List<string> list = new List<string>();
+            string result = "";
+
+            {
+                try
+                {
+                    WebRequest web = WebRequest.Create(url);
+                    web.Timeout = 15000;
+
+                    HttpWebResponse response = (HttpWebResponse)web.GetResponse();
+                    Stream dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    result = reader.ReadToEnd();
+                }
+                catch (Exception ex)
+                {
+                    _Global.log("Can not download web proxy list: " + ex.Message);
+                    Thread.Sleep(30000);
+                }
+
+            }
+
+            _Global.log("getList: " + result);
+
+
+            // Add found public proxy sources to the list
+            foreach (string line in Regex.Split(result, "\r\n"))
+            {
+
+                // Skip comments that starts on #
+                if (Regex.IsMatch(line, @"^#"))
+                {
+                    continue;
+                }
+
+                // Skip blank lines
+                if (line == "")
+                {
+                    continue;
+                }
+
+                list.Add(line);
+            }
+
+            return list;
+        }
         // This method will be called when the thread is started. 
         public void DoWork()
         {
 
             string ip = null;
-            string PublicProxySources = "";
+            List<string> banned = null;
 
             _Global.log("Query to find our own ip adress");
  
@@ -119,55 +176,33 @@ namespace ProxyMaid
             //_Global.ProxyServers.Add(new ProxyServer(_Form, "199.189.84.217", Convert.ToInt32("3128"), "runarb"));
             //return;
 
-            if (Properties.Settings.Default.UsePublicProxySources == true)
+            if (Properties.Settings.Default.UsePublicProxySources == false)
             {
+                _Global.log("Usage of public proxy sources is off, so will not download list");
+            }
+            else {
                 
                 // Get public proxy sources
-                {
-                    try { 
-                        WebRequest web = WebRequest.Create(Properties.Settings.Default.ProxySource);
-                        web.Timeout = 15000;
+                List<string> proxysources = getList(Properties.Settings.Default.ProxySource);
 
-                        HttpWebResponse response = (HttpWebResponse)web.GetResponse();
-                        Stream dataStream = response.GetResponseStream();
-                        StreamReader reader = new StreamReader(dataStream);
-                        PublicProxySources = reader.ReadToEnd();
-                    }
-                    catch (Exception ex)
-                    {
-                        _Global.log("Can not download web proxy list: " + ex.Message);
-                        Thread.Sleep(30000);
-                    }
-
-                }
-
-                _Global.log("text: " + PublicProxySources);
-
-
-                // Add found public proxy sources to the list
-                foreach (string url in Regex.Split(PublicProxySources, "\r\n"))
+                foreach (string url in proxysources)
                 {
 
-                    // Skip comments that starts on #
-                    if (Regex.IsMatch(url, @"^#"))
+                    lock (_Global.ProxySources)
                     {
-                        continue;
-                    }
 
-                    // Skip blank lines
-                    if (url == "") {
-                        continue;
-                    }
-
-                    lock (_Global.ProxySources) { 
-                       
-                       if (_Global.ProxySources.Any(s => s.Url == url) == false)
-                       {
+                        if (_Global.ProxySources.Any(s => s.Url == url) == false)
+                        {
                             ProxySource source = new ProxySource(_Form, url, null, null, 15, 0);
                             _Global.ProxySources.Add(source);
-                       }
+                        }
                     }
                 }
+
+                // Get public proxy sources
+                banned = getList(Properties.Settings.Default.ProxyBanned);
+
+
 
             }
 
@@ -225,21 +260,21 @@ namespace ProxyMaid
                         int found = 0;
 
                         // method 0: No tricks
-                        found = ExtractProxies(source.Url, result);
+                        found = ExtractProxies(source.Url, result, banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 0 from " + source.Url);
                         
 
                         
                         // method 1: find ip and port separated with a space or tab
-                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t ]+([0-9]+)", @"$1:$2"));
+                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t ]+([0-9]+)", @"$1:$2"), banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 1 from " + source.Url);
 
 
                         // http://www.idcloak.com/proxylist/proxy-list.html
                         // method 2: find port and ip separated with a space or tab
-                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+)[\t ]+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)", @"$2:$1"));
+                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+)[\t ]+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)", @"$2:$1"), banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 2 from " + source.Url);
                         
