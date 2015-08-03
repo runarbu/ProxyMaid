@@ -1,6 +1,6 @@
 ﻿namespace ProxyMaid
 {
-    partial class FormAddProxies
+    partial class FormAddProxySource
     {
         /// <summary>
         /// Required designer variable.

@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace ProxyMaid
 {
-    public partial class FormAddProxies : Form
+    public partial class FormAddProxySource : Form
     {
         private volatile Globals _Global;
         private volatile Form _Form;
 
-        public FormAddProxies(Form myForm, Globals Global)
+        public FormAddProxySource(Form myForm, Globals Global)
         {
             InitializeComponent();
 
