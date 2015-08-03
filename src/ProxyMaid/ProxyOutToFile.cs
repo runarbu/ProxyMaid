@@ -44,9 +44,9 @@ namespace ProxyMaid
 
                         file = new System.IO.StreamWriter(Properties.Settings.Default.ProxyOutFile);
 
-                        foreach (ProxyServer server in _Global.ProxyServers)
+                        foreach (ProxyServer server in _Global.ProxyServers.ToList())
                         {
-                            if (server.Status == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
+                            if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
                             {
                                 file.WriteLine(server.Ip + ":" + server.Port + ", Anonymity:" + server.Anonymity);
                             }
