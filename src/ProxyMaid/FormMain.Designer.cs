@@ -1,6 +1,6 @@
 ﻿namespace ProxyMaid
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -56,6 +56,7 @@
             this.setingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addProxiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelThreads = new System.Windows.Forms.Label();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -80,12 +81,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(2, 34);
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(2, 2);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(589, 264);
+            this.textBox1.Size = new System.Drawing.Size(589, 296);
             this.textBox1.TabIndex = 2;
             // 
             // dataGridView1
@@ -101,11 +102,13 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Location = new System.Drawing.Point(0, 52);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
@@ -139,7 +142,7 @@
             // dataGridViewProxySources
             // 
             this.dataGridViewProxySources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProxySources.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridViewProxySources.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProxySources.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewProxySources.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewProxySources.Name = "dataGridViewProxySources";
@@ -333,7 +336,8 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setingsToolStripMenuItem,
-            this.addProxiesToolStripMenuItem});
+            this.addProxiesToolStripMenuItem,
+            this.reportToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -348,8 +352,8 @@
             // addProxiesToolStripMenuItem
             // 
             this.addProxiesToolStripMenuItem.Name = "addProxiesToolStripMenuItem";
-            this.addProxiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.addProxiesToolStripMenuItem.Text = "Add proxies";
+            this.addProxiesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.addProxiesToolStripMenuItem.Text = "Add proxy source";
             this.addProxiesToolStripMenuItem.Click += new System.EventHandler(this.addProxiesToolStripMenuItem_Click);
             // 
             // labelThreads
@@ -360,6 +364,13 @@
             this.labelThreads.Size = new System.Drawing.Size(49, 13);
             this.labelThreads.TabIndex = 8;
             this.labelThreads.Text = "Threads:";
+            // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -424,6 +435,7 @@
         private System.Windows.Forms.ToolStripMenuItem addProxiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllProxiesSourcesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveWorkinProxiesSourcesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
     }
 }
 

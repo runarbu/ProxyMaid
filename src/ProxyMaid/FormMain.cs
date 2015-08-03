@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace ProxyMaid
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
 
         private volatile Globals Global;
@@ -24,7 +24,7 @@ namespace ProxyMaid
         private ProxyOutToFile ProxyOutToFileObject;
         private Thread ProxyOutToFileThread = null;
 
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
             textBoxOutFile.Text = Properties.Settings.Default.ProxyOutFile;
@@ -33,13 +33,14 @@ namespace ProxyMaid
             // Setup the data grid that shows found proxies
             dataGridView1.AutoGenerateColumns = false;
 
-            string[] columbsProxiesServers = { "Ip", "Port", "Anonymity", "Checked", "Status", "Source" };
+            string[] columbsProxiesServers = { "Ip:100", "Port:50", "Anonymity:100", "Checked:100", "Status:100", "Source:100" };
             foreach (string columb in columbsProxiesServers)
             {
                 DataGridViewTextBoxColumn makeColumn = new DataGridViewTextBoxColumn();
-                makeColumn.DataPropertyName = columb;
-                makeColumn.HeaderText = columb;
-
+                makeColumn.DataPropertyName = columb.Split(':')[0];
+                makeColumn.HeaderText = columb.Split(':')[0];
+                makeColumn.Width = Int32.Parse(columb.Split(':')[1]);
+                
                 dataGridView1.Columns.Add(makeColumn);
             }
         
@@ -48,12 +49,13 @@ namespace ProxyMaid
             // Setup the data grid that shows proxy sources
             dataGridViewProxySources.AutoGenerateColumns = false;
 
-            string[] columbsProxiesSources = { "Url", "Proxies", "Working", "Bad", "Interval" };
+            string[] columbsProxiesSources = { "Url:100", "Proxies:100", "Working:100", "Bad:100", "Interval:100" };
             foreach (string columb in columbsProxiesSources)
             {
                 DataGridViewTextBoxColumn makeColumn = new DataGridViewTextBoxColumn();
-                makeColumn.DataPropertyName = columb;
-                makeColumn.HeaderText = columb;
+                makeColumn.DataPropertyName = columb.Split(':')[0];
+                makeColumn.HeaderText = columb.Split(':')[0];
+                makeColumn.Width = Int32.Parse(columb.Split(':')[1]);
 
                 dataGridViewProxySources.Columns.Add(makeColumn);
             }
@@ -181,7 +183,7 @@ namespace ProxyMaid
 
         private void addProxiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddProxies fms = new FormAddProxies(this, Global);
+            FormAddProxySource fms = new FormAddProxySource(this, Global);
             fms.Show();
         }
 
@@ -288,6 +290,12 @@ namespace ProxyMaid
             {
                 ProxyOutToFileThread.Abort();
             }
+        }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var fms = new FormReport(Global);
+            fms.Show();
         }
 
 
