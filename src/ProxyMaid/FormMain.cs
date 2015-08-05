@@ -27,7 +27,7 @@ namespace ProxyMaid
         public FormMain()
         {
             InitializeComponent();
-            textBoxOutFile.Text = Properties.Settings.Default.ProxyOutFile;
+
             Global = new Globals(this, textBox1);
 
             // Setup the data grid that shows found proxies
@@ -75,7 +75,10 @@ namespace ProxyMaid
             // Set minimum anonymity
             comboBoxProxyMinAnonymity.SelectedIndex = comboBoxProxyMinAnonymity.FindStringExact(Properties.Settings.Default.ProxyMinAnonymity);
 
+            trackBar1.Value = 10;
             // ToDo: Load old proxies from the out file
+
+
         }
 
         
@@ -102,11 +105,14 @@ namespace ProxyMaid
                 
                 // Start the out file thread
                 {
-                    ProxyOutToFileObject = new ProxyOutToFile(this, Global, labelOutFileTime);
+                    ProxyOutToFileObject = new ProxyOutToFile(this, Global, labelOutFileTime, labelProxyOutFilePath);
                     ProxyOutToFileThread = new Thread(ProxyOutToFileObject.DoWork);
 
                     ProxyOutToFileThread.Start();
                 }
+
+                // Tell other threds that we are runnig
+                Global.running = true;
             }
             else 
             {
@@ -114,6 +120,10 @@ namespace ProxyMaid
 
                 LeadsScraperObject.StopWork();
                 ProxyOutToFileObject.StopWork();
+
+                // Tell other threds that we are not runnig
+                Global.running = false;
+
             }
             
              
@@ -138,10 +148,7 @@ namespace ProxyMaid
             }
         }
 
-        private void logToFile_CheckedChanged(object sender, EventArgs e)
-        {
-            Global.LogToFile = logToFile.Checked;
-        }
+        
 
         private void setingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -162,6 +169,8 @@ namespace ProxyMaid
            {
                Properties.Settings.Default.ProxyOutFile = saveFileDialogOutFile.FileName;
                Properties.Settings.Default.Save();
+
+               labelProxyOutFilePath.Text = saveFileDialogOutFile.FileName;
            }
         }
 
@@ -172,7 +181,7 @@ namespace ProxyMaid
 
         private void buttonOutFileOpen_Click(object sender, EventArgs e)
         {
-            Process.Start("notepad.exe", Properties.Settings.Default.ProxyOutFile);
+            Process.Start("notepad.exe", Global.ProxyOutFilePath());
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,6 +305,11 @@ namespace ProxyMaid
         {
             var fms = new FormReport(Global);
             fms.Show();
+        }
+
+        private void logToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Global.LogToFile = true;
         }
 
 
