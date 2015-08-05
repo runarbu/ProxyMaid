@@ -15,7 +15,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ProxySource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/proxies.txt</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/runarbu/ProxyMaid/master/lists/proxies.txt</Value>
     </Setting>
     <Setting Name="ProxyMinAnonymity" Type="System.String" Scope="User">
       <Value Profile="(Default)">Low</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ProxyBanned" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/banned.txt</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/runarbu/ProxyMaid/master/lists/banned.txt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

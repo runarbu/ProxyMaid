@@ -111,7 +111,7 @@ namespace ProxyMaid
 
 
             // Add found public proxy sources to the list
-            foreach (string line in Regex.Split(result, "\r\n"))
+            foreach (string line in Regex.Split(result, "\n"))
             {
 
                 // Skip comments that starts on #

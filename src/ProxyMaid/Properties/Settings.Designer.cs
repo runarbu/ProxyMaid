@@ -73,7 +73,7 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.runarb.com/div/ProxySources/proxies.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/runarbu/ProxyMaid/master/lists/proxies.txt")]
         public string ProxySource {
             get {
                 return ((string)(this["ProxySource"]));
@@ -121,7 +121,7 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.runarb.com/div/ProxySources/banned.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/runarbu/ProxyMaid/master/lists/banned.txt")]
         public string ProxyBanned {
             get {
                 return ((string)(this["ProxyBanned"]));
