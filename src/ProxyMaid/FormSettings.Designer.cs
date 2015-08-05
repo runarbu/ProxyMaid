@@ -72,9 +72,9 @@
             this.labelProxyTimeOut.Location = new System.Drawing.Point(17, 55);
             this.labelProxyTimeOut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProxyTimeOut.Name = "labelProxyTimeOut";
-            this.labelProxyTimeOut.Size = new System.Drawing.Size(122, 13);
+            this.labelProxyTimeOut.Size = new System.Drawing.Size(119, 13);
             this.labelProxyTimeOut.TabIndex = 3;
-            this.labelProxyTimeOut.Text = "Proxy time out (seconds)";
+            this.labelProxyTimeOut.Text = "Proxy timeout (seconds)";
             // 
             // buttonSave
             // 
@@ -104,9 +104,9 @@
             this.labelProxyOutTime.Location = new System.Drawing.Point(19, 89);
             this.labelProxyOutTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProxyOutTime.Name = "labelProxyOutTime";
-            this.labelProxyOutTime.Size = new System.Drawing.Size(118, 13);
+            this.labelProxyOutTime.Size = new System.Drawing.Size(161, 13);
             this.labelProxyOutTime.TabIndex = 6;
-            this.labelProxyOutTime.Text = "Proxy out time (minutes)";
+            this.labelProxyOutTime.Text = "Proxy output to file time (minutes)";
             // 
             // textBoxProxyOutTime
             // 

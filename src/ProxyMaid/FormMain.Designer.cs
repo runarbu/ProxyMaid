@@ -36,15 +36,15 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridViewProxySources = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.logToFile = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonOutFileOpen = new System.Windows.Forms.Button();
+            this.buttonChange = new System.Windows.Forms.Button();
+            this.labelProxyOutFilePathInfo = new System.Windows.Forms.Label();
+            this.labelProxyOutFilePath = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxProxyMinAnonymity = new System.Windows.Forms.ComboBox();
             this.labelOutFIleInfo = new System.Windows.Forms.Label();
             this.labelOutFileTime = new System.Windows.Forms.Label();
-            this.buttonOutFileOpen = new System.Windows.Forms.Button();
-            this.buttonChange = new System.Windows.Forms.Button();
-            this.textBoxOutFile = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -55,8 +55,9 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addProxiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelThreads = new System.Windows.Forms.Label();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelThreads = new System.Windows.Forms.Label();
+            this.logToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -70,7 +71,7 @@
             // 
             // buttonStartStop
             // 
-            this.buttonStartStop.Location = new System.Drawing.Point(184, 23);
+            this.buttonStartStop.Location = new System.Drawing.Point(187, 25);
             this.buttonStartStop.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStartStop.Name = "buttonStartStop";
             this.buttonStartStop.Size = new System.Drawing.Size(56, 25);
@@ -109,11 +110,11 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(0, 52);
+            this.tabControl1.Location = new System.Drawing.Point(0, 54);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(601, 326);
+            this.tabControl1.Size = new System.Drawing.Size(601, 324);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -154,7 +155,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.logToFile);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
@@ -165,34 +165,63 @@
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // logToFile
-            // 
-            this.logToFile.AutoSize = true;
-            this.logToFile.Location = new System.Drawing.Point(4, 273);
-            this.logToFile.Margin = new System.Windows.Forms.Padding(2);
-            this.logToFile.Name = "logToFile";
-            this.logToFile.Size = new System.Drawing.Size(72, 17);
-            this.logToFile.TabIndex = 3;
-            this.logToFile.Text = "Log to file";
-            this.logToFile.UseVisualStyleBackColor = true;
-            this.logToFile.CheckedChanged += new System.EventHandler(this.logToFile_CheckedChanged);
-            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.buttonOutFileOpen);
+            this.tabPage3.Controls.Add(this.buttonChange);
+            this.tabPage3.Controls.Add(this.labelProxyOutFilePathInfo);
+            this.tabPage3.Controls.Add(this.labelProxyOutFilePath);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.comboBoxProxyMinAnonymity);
             this.tabPage3.Controls.Add(this.labelOutFIleInfo);
             this.tabPage3.Controls.Add(this.labelOutFileTime);
-            this.tabPage3.Controls.Add(this.buttonOutFileOpen);
-            this.tabPage3.Controls.Add(this.buttonChange);
-            this.tabPage3.Controls.Add(this.textBoxOutFile);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(593, 300);
+            this.tabPage3.Size = new System.Drawing.Size(593, 298);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Out";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // buttonOutFileOpen
+            // 
+            this.buttonOutFileOpen.Location = new System.Drawing.Point(43, 126);
+            this.buttonOutFileOpen.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOutFileOpen.Name = "buttonOutFileOpen";
+            this.buttonOutFileOpen.Size = new System.Drawing.Size(155, 25);
+            this.buttonOutFileOpen.TabIndex = 2;
+            this.buttonOutFileOpen.Text = "Open output file in notepad";
+            this.buttonOutFileOpen.UseVisualStyleBackColor = true;
+            this.buttonOutFileOpen.Click += new System.EventHandler(this.buttonOutFileOpen_Click);
+            // 
+            // buttonChange
+            // 
+            this.buttonChange.Location = new System.Drawing.Point(43, 165);
+            this.buttonChange.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonChange.Name = "buttonChange";
+            this.buttonChange.Size = new System.Drawing.Size(102, 26);
+            this.buttonChange.TabIndex = 1;
+            this.buttonChange.Text = "Change output file";
+            this.buttonChange.UseVisualStyleBackColor = true;
+            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
+            // 
+            // labelProxyOutFilePathInfo
+            // 
+            this.labelProxyOutFilePathInfo.AutoSize = true;
+            this.labelProxyOutFilePathInfo.Location = new System.Drawing.Point(40, 94);
+            this.labelProxyOutFilePathInfo.Name = "labelProxyOutFilePathInfo";
+            this.labelProxyOutFilePathInfo.Size = new System.Drawing.Size(58, 13);
+            this.labelProxyOutFilePathInfo.TabIndex = 8;
+            this.labelProxyOutFilePathInfo.Text = "Output file:";
+            // 
+            // labelProxyOutFilePath
+            // 
+            this.labelProxyOutFilePath.AutoSize = true;
+            this.labelProxyOutFilePath.Location = new System.Drawing.Point(109, 94);
+            this.labelProxyOutFilePath.Name = "labelProxyOutFilePath";
+            this.labelProxyOutFilePath.Size = new System.Drawing.Size(10, 13);
+            this.labelProxyOutFilePath.TabIndex = 7;
+            this.labelProxyOutFilePath.Text = "-";
             // 
             // label2
             // 
@@ -221,7 +250,7 @@
             // labelOutFIleInfo
             // 
             this.labelOutFIleInfo.AutoSize = true;
-            this.labelOutFIleInfo.Location = new System.Drawing.Point(40, 118);
+            this.labelOutFIleInfo.Location = new System.Drawing.Point(40, 66);
             this.labelOutFIleInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOutFIleInfo.Name = "labelOutFIleInfo";
             this.labelOutFIleInfo.Size = new System.Drawing.Size(63, 13);
@@ -231,46 +260,16 @@
             // labelOutFileTime
             // 
             this.labelOutFileTime.AutoSize = true;
-            this.labelOutFileTime.Location = new System.Drawing.Point(106, 118);
+            this.labelOutFileTime.Location = new System.Drawing.Point(106, 66);
             this.labelOutFileTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOutFileTime.Name = "labelOutFileTime";
             this.labelOutFileTime.Size = new System.Drawing.Size(34, 13);
             this.labelOutFileTime.TabIndex = 3;
             this.labelOutFileTime.Text = "never";
             // 
-            // buttonOutFileOpen
-            // 
-            this.buttonOutFileOpen.Location = new System.Drawing.Point(185, 113);
-            this.buttonOutFileOpen.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonOutFileOpen.Name = "buttonOutFileOpen";
-            this.buttonOutFileOpen.Size = new System.Drawing.Size(102, 25);
-            this.buttonOutFileOpen.TabIndex = 2;
-            this.buttonOutFileOpen.Text = "Open in notepad";
-            this.buttonOutFileOpen.UseVisualStyleBackColor = true;
-            this.buttonOutFileOpen.Click += new System.EventHandler(this.buttonOutFileOpen_Click);
-            // 
-            // buttonChange
-            // 
-            this.buttonChange.Location = new System.Drawing.Point(231, 66);
-            this.buttonChange.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonChange.Name = "buttonChange";
-            this.buttonChange.Size = new System.Drawing.Size(56, 26);
-            this.buttonChange.TabIndex = 1;
-            this.buttonChange.Text = "Change";
-            this.buttonChange.UseVisualStyleBackColor = true;
-            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
-            // 
-            // textBoxOutFile
-            // 
-            this.textBoxOutFile.Location = new System.Drawing.Point(40, 67);
-            this.textBoxOutFile.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxOutFile.Name = "textBoxOutFile";
-            this.textBoxOutFile.Size = new System.Drawing.Size(179, 20);
-            this.textBoxOutFile.TabIndex = 0;
-            // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(314, 23);
+            this.trackBar1.Location = new System.Drawing.Point(317, 25);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(2);
             this.trackBar1.Maximum = 50;
             this.trackBar1.Name = "trackBar1";
@@ -281,7 +280,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(439, 29);
+            this.label1.Location = new System.Drawing.Point(442, 31);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
@@ -337,7 +336,8 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setingsToolStripMenuItem,
             this.addProxiesToolStripMenuItem,
-            this.reportToolStripMenuItem});
+            this.reportToolStripMenuItem,
+            this.logToFileToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -345,7 +345,7 @@
             // setingsToolStripMenuItem
             // 
             this.setingsToolStripMenuItem.Name = "setingsToolStripMenuItem";
-            this.setingsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.setingsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.setingsToolStripMenuItem.Text = "Settings";
             this.setingsToolStripMenuItem.Click += new System.EventHandler(this.setingsToolStripMenuItem_Click);
             // 
@@ -356,23 +356,30 @@
             this.addProxiesToolStripMenuItem.Text = "Add proxy source";
             this.addProxiesToolStripMenuItem.Click += new System.EventHandler(this.addProxiesToolStripMenuItem_Click);
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
+            // 
             // labelThreads
             // 
             this.labelThreads.AutoSize = true;
-            this.labelThreads.Location = new System.Drawing.Point(260, 29);
+            this.labelThreads.Location = new System.Drawing.Point(263, 31);
             this.labelThreads.Name = "labelThreads";
             this.labelThreads.Size = new System.Drawing.Size(49, 13);
             this.labelThreads.TabIndex = 8;
             this.labelThreads.Text = "Threads:";
             // 
-            // reportToolStripMenuItem
+            // logToFileToolStripMenuItem
             // 
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reportToolStripMenuItem.Text = "Report";
-            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
+            this.logToFileToolStripMenuItem.Name = "logToFileToolStripMenuItem";
+            this.logToFileToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.logToFileToolStripMenuItem.Text = "Log to file";
+            this.logToFileToolStripMenuItem.Click += new System.EventHandler(this.logToFileToolStripMenuItem_Click);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -385,7 +392,7 @@
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "ProxyMaid";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -415,7 +422,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox logToFile;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -424,7 +430,6 @@
         private System.Windows.Forms.Label labelOutFileTime;
         private System.Windows.Forms.Button buttonOutFileOpen;
         private System.Windows.Forms.Button buttonChange;
-        private System.Windows.Forms.TextBox textBoxOutFile;
         private System.Windows.Forms.Label labelThreads;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -436,6 +441,9 @@
         private System.Windows.Forms.ToolStripMenuItem saveAllProxiesSourcesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveWorkinProxiesSourcesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.Label labelProxyOutFilePathInfo;
+        private System.Windows.Forms.Label labelProxyOutFilePath;
+        private System.Windows.Forms.ToolStripMenuItem logToFileToolStripMenuItem;
     }
 }
 

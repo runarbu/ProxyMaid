@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.ComponentModel;
 using System.Threading;
+using System.IO;
 
 namespace ProxyMaid
 {
@@ -16,6 +17,7 @@ namespace ProxyMaid
         private static object logLock = new object();
         private volatile TextBox _textBox1;
         private volatile Form _Form;
+        private volatile bool _running = false;
 
         /*
         public Globals(Form myForm, TextBox mytextBox)
@@ -56,6 +58,10 @@ namespace ProxyMaid
             lock (ProxyServers)
             {
                 int i = 0;
+
+                if (!running) {
+                    return -1;
+                }
 
                 foreach (ProxyServer server in ProxyServers.ToList())
                 {
@@ -209,6 +215,37 @@ namespace ProxyMaid
                 lock (SmalLock)
                 {
                     _LogToFile = value;
+                }
+            }
+        }
+
+        public string ProxyOutFilePath()
+        {
+
+            if (Properties.Settings.Default.ProxyOutFile == "" || Properties.Settings.Default.ProxyOutFile == null)
+            {
+                return Directory.GetCurrentDirectory() + @"\out\proxies.txt";
+            }
+            else {
+                return Properties.Settings.Default.ProxyOutFile;
+            }
+        }
+
+        public bool running
+        {
+            get
+            {
+                lock (SmalLock)
+                {
+                    return _running;
+                }
+            }
+
+            set
+            {
+                lock (SmalLock)
+                {
+                    _running = value;
                 }
             }
         }

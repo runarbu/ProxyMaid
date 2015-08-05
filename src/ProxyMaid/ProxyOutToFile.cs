@@ -14,12 +14,14 @@ namespace ProxyMaid
         private volatile Globals _Global;
         private volatile Form _Form;
         private volatile Label _labelOutFileTime;
+        private volatile Label _labelProxyOutFilePath;
 
-        public ProxyOutToFile(Form myForm, Globals Global, Label labelOutFileTime)
+        public ProxyOutToFile(Form myForm, Globals Global, Label labelOutFileTime, Label labelProxyOutFilePath)
         {
             _Form = myForm;
             _Global = Global;
             _labelOutFileTime = labelOutFileTime;
+            _labelProxyOutFilePath = labelProxyOutFilePath;
         }
 
         public void StopWork()
@@ -37,18 +39,21 @@ namespace ProxyMaid
                 if (_Global.ProxyServers.Count != 0)
                 {
 
+                    string path = _Global.ProxyOutFilePath();
+
                     try
                     {
 
                         //_Global.log("Writing proxies to file");
+                        
 
-                        file = new System.IO.StreamWriter(Properties.Settings.Default.ProxyOutFile);
+                        file = new System.IO.StreamWriter(path);
 
                         foreach (ProxyServer server in _Global.ProxyServers.ToList())
                         {
                             if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
                             {
-                                file.WriteLine(server.Ip + ":" + server.Port + ", Anonymity:" + server.Anonymity);
+                                file.WriteLine(server.Ip + ":" + server.Port);
                             }
                         }
 
@@ -56,12 +61,13 @@ namespace ProxyMaid
                         _Form.Invoke((MethodInvoker)delegate
                         {
                             _labelOutFileTime.Text = DateTime.Now.ToShortTimeString();
+                            _labelProxyOutFilePath.Text = path;
                         });
 
                     }
                     catch (Exception ex)
                     {
-                        _Global.log("Can not writ to out file '" + Properties.Settings.Default.ProxyOutFile + "': " + ex.Message);
+                        _Global.log("Can not writ to out file '" + path + "': " + ex.Message);
                     }
                     finally
                     {
