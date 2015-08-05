@@ -49,7 +49,7 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp\\proxys.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ProxyOutFile {
             get {
                 return ((string)(this["ProxyOutFile"]));
@@ -73,7 +73,7 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.runarb.com/div/ProxySources/public.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.runarb.com/div/ProxySources/proxies.txt")]
         public string ProxySource {
             get {
                 return ((string)(this["ProxySource"]));
@@ -85,7 +85,7 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("High")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Low")]
         public string ProxyMinAnonymity {
             get {
                 return ((string)(this["ProxyMinAnonymity"]));
@@ -109,13 +109,25 @@ namespace ProxyMaid.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UsePublicProxySources {
             get {
                 return ((bool)(this["UsePublicProxySources"]));
             }
             set {
                 this["UsePublicProxySources"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.runarb.com/div/ProxySources/banned.txt")]
+        public string ProxyBanned {
+            get {
+                return ((string)(this["ProxyBanned"]));
+            }
+            set {
+                this["ProxyBanned"] = value;
             }
         }
     }

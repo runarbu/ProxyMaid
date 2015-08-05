@@ -9,22 +9,25 @@
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="ProxyOutFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">c:\temp\proxys.txt</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ProxyOutTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ProxySource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/public.txt</Value>
+      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/proxies.txt</Value>
     </Setting>
     <Setting Name="ProxyMinAnonymity" Type="System.String" Scope="User">
-      <Value Profile="(Default)">High</Value>
+      <Value Profile="(Default)">Low</Value>
     </Setting>
     <Setting Name="Debug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="UsePublicProxySources" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ProxyBanned" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.runarb.com/div/ProxySources/banned.txt</Value>
     </Setting>
   </Settings>
 </SettingsFile>
