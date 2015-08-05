@@ -123,9 +123,10 @@ namespace ProxyMaid
                     
                     var result = response.Content; // raw content as string
                     
-                    _Global.log("result (" + server.Ip + ":" + server.Port + "): " + result);
-                    _Global.log("StatusCode: " + response.StatusCode);
-                    _Global.log("StatusDescription: " + response.StatusDescription);
+                    // Debug: show more info
+                    //_Global.log("result (" + server.Ip + ":" + server.Port + "): " + result);
+                    //_Global.log("StatusCode: " + response.StatusCode);
+                    //_Global.log("StatusDescription: " + response.StatusDescription);
 
                     if (response.ErrorException != null)
                     {
@@ -171,13 +172,13 @@ namespace ProxyMaid
                             if (revealing)
                             {
                                 anonymity = "Low";
-                                _Global.log("Found revealing header " + value.Key + " : " + value.Value);
+                                // Debug: _Global.log("Found revealing header " + value.Key + " : " + value.Value);
                                 status += "Found revealing header " + value.Key + " = " + value.Value + ". ";
                             }
                         }
                         else {
                             anonymity = "Low";
-                            _Global.log("Have unknown header '" + value.Key + " : " + value.Value);
+                            // Debug: _Global.log("Have unknown header '" + value.Key + " : " + value.Value);
                             status += "Have unknown header '" + value.Key + " : " + value.Value + ". ";
                         }
                     }
@@ -186,7 +187,7 @@ namespace ProxyMaid
 
                     if (result.IndexOf(ip) != -1)
                     {
-                        _Global.log(server.Ip + ": Have your ip in results");
+                        // Debug: _Global.log(server.Ip + ": Have your ip in results");
                         status += "Have your ip in results. ";
                         anonymity = "None";
                     }
@@ -201,7 +202,7 @@ namespace ProxyMaid
                         status = "Ok (" + status + ")";
                     }
 
-                    _Global.log(server.Ip + ": anonymity=" + anonymity + ", status=" + status);                    
+                    _Global.log(server.Ip + " Ok: anonymity=" + anonymity + ", status=" + status);                    
                       
                 }
                 catch (Exception ex)

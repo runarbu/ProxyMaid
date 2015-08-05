@@ -107,7 +107,7 @@ namespace ProxyMaid
 
             }
 
-            _Global.log("getList: " + result);
+            // Debug: _Global.log("getList: " + result);
 
 
             // Add found public proxy sources to the list
