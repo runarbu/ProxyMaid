@@ -130,5 +130,17 @@ namespace ProxyMaid.Properties {
                 this["ProxyBanned"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Text")]
+        public string ReportType {
+            get {
+                return ((string)(this["ReportType"]));
+            }
+            set {
+                this["ReportType"] = value;
+            }
+        }
     }
 }

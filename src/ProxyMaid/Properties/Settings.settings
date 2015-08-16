@@ -29,5 +29,8 @@
     <Setting Name="ProxyBanned" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://raw.githubusercontent.com/runarbu/ProxyMaid/master/lists/banned.txt</Value>
     </Setting>
+    <Setting Name="ReportType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Text</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

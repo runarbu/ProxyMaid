@@ -12,28 +12,79 @@ namespace ProxyMaid
 {
     public partial class FormReport : Form
     {
+
+        private volatile Globals _Global;
+
         public FormReport(Globals Global)
         {
             InitializeComponent();
 
-            textBoxReport.AppendText("# Checked with ProxyMaid ( http://www.proxymaid.com/ )\n");
-            textBoxReport.AppendText("# Time out: " + Properties.Settings.Default.ProxyTimeOut + "s\n");
-            
+            _Global = Global;
 
-            string[] anonymitylevels = { "High", "Low", "None" };
-            foreach (string anonymity in anonymitylevels)
+            comboBoxReportType.Items.Add("Text");
+            comboBoxReportType.Items.Add("BB code");
+
+
+            comboBoxReportType.SelectedIndex = comboBoxReportType.FindStringExact(Properties.Settings.Default.ReportType);
+
+        }
+
+        public void report(string type) {
+
+            string[] anonymitylevels = { "High:high", "Low:low", "None:no" };
+
+            textBoxReport.Clear();
+
+            if (type == "Text")
             {
-                textBoxReport.AppendText("#\n");
-                textBoxReport.AppendText("# Proxies with " + anonymity.ToLower() + " anonymity:\n");
+                textBoxReport.AppendText("# Checked with ProxyMaid ( http://www.proxymaid.com/ )\n");
+                textBoxReport.AppendText("# Time out: " + Properties.Settings.Default.ProxyTimeOut + "s\n");
 
-                foreach (ProxyServer server in Global.ProxyServers.ToList())
+                foreach (string anonymity in anonymitylevels)
                 {
-                    if (server.Status.Substring(0, 2) == "Ok" && server.Anonymity == anonymity)
+                    textBoxReport.AppendText("#\n");
+                    textBoxReport.AppendText("# Proxies with " + anonymity.Split(':')[1] + " anonymity:\n");
+
+                    foreach (ProxyServer server in _Global.ProxyServers.ToList())
                     {
-                        textBoxReport.AppendText(server.Ip + ":" + server.Port + "\n");
+                        if (server.Status.Substring(0, 2) == "Ok" && server.Anonymity == anonymity.Split(':')[0])
+                        {
+                            textBoxReport.AppendText(server.Ip + ":" + server.Port + "\n");
+                        }
                     }
                 }
             }
+            else if (type == "BB code")
+            {
+                textBoxReport.AppendText("Checked with ProxyMaid\n");
+                textBoxReport.AppendText("Time out: " + Properties.Settings.Default.ProxyTimeOut + "s\n");
+
+                foreach (string anonymity in anonymitylevels)
+                {
+                    textBoxReport.AppendText("\n");
+                    textBoxReport.AppendText("Proxies with " + anonymity.Split(':')[1] + " anonymity:\n");
+
+                    textBoxReport.AppendText("[CODE]\n");
+                    foreach (ProxyServer server in _Global.ProxyServers.ToList())
+                    {
+                        if (server.Status.Substring(0, 2) == "Ok" && server.Anonymity == anonymity.Split(':')[0])
+                        {
+                            textBoxReport.AppendText(server.Ip + ":" + server.Port + "\n");
+                        }
+                    }
+                    textBoxReport.AppendText("[/CODE]\n");
+                }
+            }
+            else {
+                MessageBox.Show("Unknown report type '" + type + "'.");
+            }
+        }
+
+        private void comboBoxReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            report(comboBoxReportType.SelectedItem.ToString());
+
+            Properties.Settings.Default.ReportType = comboBoxReportType.SelectedItem.ToString();
         }
     }
 }
