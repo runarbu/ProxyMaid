@@ -85,6 +85,7 @@ namespace ProxyMaid
             report(comboBoxReportType.SelectedItem.ToString());
 
             Properties.Settings.Default.ReportType = comboBoxReportType.SelectedItem.ToString();
+            Properties.Settings.Default.Save();
         }
     }
 }
