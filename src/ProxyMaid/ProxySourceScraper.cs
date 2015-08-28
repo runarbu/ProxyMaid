@@ -193,7 +193,7 @@ namespace ProxyMaid
 
                         if (_Global.ProxySources.Any(s => s.Url == url) == false)
                         {
-                            ProxySource source = new ProxySource(_Form, url, null, null, 15, 0);
+                            ProxySource source = new ProxySource(_Form, url, null, null, 60, 0);
                             _Global.ProxySources.Add(source);
                         }
                     }
