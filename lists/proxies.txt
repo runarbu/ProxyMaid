@@ -3,14 +3,42 @@
 # One website pr line. Lines starting with # are considered comments.
 #
 
+# Hide My Ass IP:Port Proxies
 http://proxylist.hidemyass.com/
+http://proxylist.hidemyass.com/2
+http://proxylist.hidemyass.com/3
+http://proxylist.hidemyass.com/4
+http://proxylist.hidemyass.com/5
+http://proxylist.hidemyass.com/6
+http://proxylist.hidemyass.com/7
+http://proxylist.hidemyass.com/8
+
 http://www.samair.ru/proxy/
 #http://www.blackhatworld.com/blackhat-seo/proxy-lists/753956-new-fresh-big-proxy-lists-worldwide-usa-elite-proxies-updated-daily-2.html
 http://www.us-proxy.org/
+
+# Different xroxy.com lists
 http://www.xroxy.com/proxylist.htm
-http://free-proxy-list.net/
-http://www.mrhinkydink.com/proxies.htm
-http://www.cool-proxy.net/
+http://www.xroxy.com/proxy-port-80.htm
+http://www.xroxy.com/proxy-port-8080.htm
+http://www.xroxy.com/proxy-port-3128.htm
+http://www.xroxy.com/proxy-port-1080.htm
+http://www.xroxy.com/proxy--Anonymous-CN.htm
+http://www.xroxy.com/proxy--Anonymous-RU.htm
+http://www.xroxy.com/proxy--Anonymous-GB.htm
+http://www.xroxy.com/proxy--Anonymous-US.htm
+http://www.xroxy.com/proxylist.php?port=Not_standard
+http://www.xroxy.com/proxylist.php?port=Not_standard&type=Anonymous
+http://www.xroxy.com/proxy-type-Not_transparent.htm
+
+# Different UltraProxies lists
+http://www.ultraproxies.com/
+http://www.ultraproxies.com/high-anonymous.html?datatype=High
+http://www.ultraproxies.com/anonymous.html?datatype=Medium
+http://www.ultraproxies.com/http.html?datatype=HTTP=1
+
+
+# Different ProxyNova lists
 http://www.proxynova.com/proxy-server-list/country-us/
 http://www.proxynova.com/proxy-server-list/
 http://www.proxynova.com/proxy-server-list/country-cn/
@@ -23,7 +51,29 @@ http://www.proxynova.com/proxy-server-list/country-br/
 http://www.proxynova.com/proxy-server-list/country-id/
 http://www.proxynova.com/proxy-server-list/country-ru/
 http://www.proxynova.com/proxy-server-list/country-fr/
+
+# Different Aliveproxy lists
+http://aliveproxy.com/high-anonymity-proxy-list/
+http://aliveproxy.com/anonymous-proxy-list/
+http://aliveproxy.com/proxy-list-port-8080/
+http://aliveproxy.com/proxy-list-port-3128/
+http://aliveproxy.com/proxy-list-port-81/
+http://aliveproxy.com/proxy-list-port-80/
+
+https://proxy-list.org/english/index.php
+https://proxy-list.org/english/index.php?p=2
+https://proxy-list.org/english/index.php?p=3
+https://proxy-list.org/english/index.php?p=4
+
+http://free-proxy-list.net/
+http://www.mrhinkydink.com/proxies.htm
+http://www.cool-proxy.net/
 http://www.gatherproxy.com/
+http://www.gatherproxy.com/proxylist/anonymity/?t=Elite
+http://www.gatherproxy.com/proxylist/anonymity/?t=Anonymous
 http://free-proxy.cz/en/
 http://www.idcloak.com/proxylist/proxy-list.html
 http://www.ip-adress.com/proxy_list/
+
+# Known not working sources.
+http://www.echolink.org/proxylist.jsp
