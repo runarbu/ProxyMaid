@@ -223,7 +223,7 @@ namespace ProxyMaid
 
             if (Properties.Settings.Default.ProxyOutFile == "" || Properties.Settings.Default.ProxyOutFile == null)
             {
-                return Directory.GetCurrentDirectory() + @"\out\proxies.txt";
+                return Directory.GetCurrentDirectory() + @"\Out\proxies.txt";
             }
             else {
                 return Properties.Settings.Default.ProxyOutFile;
