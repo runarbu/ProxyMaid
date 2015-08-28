@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProxyMaid
 {
     public partial class FormReport : Form
@@ -31,13 +32,15 @@ namespace ProxyMaid
 
         public void report(string type) {
 
+            AssemblyAttribute AssemblyAttribute = new AssemblyAttribute();
+
             string[] anonymitylevels = { "High:high", "Low:low", "None:no" };
 
             textBoxReport.Clear();
 
             if (type == "Text")
             {
-                textBoxReport.AppendText("# Checked with ProxyMaid ( http://www.proxymaid.com/ )\n");
+                textBoxReport.AppendText(String.Format("Checked with ProxyMaid, Version {0} ( http://www.proxymaid.com/ )\n", AssemblyAttribute.AssemblyVersion));
                 textBoxReport.AppendText("# Time out: " + Properties.Settings.Default.ProxyTimeOut + "s\n");
 
                 foreach (string anonymity in anonymitylevels)
@@ -56,7 +59,8 @@ namespace ProxyMaid
             }
             else if (type == "BB code")
             {
-                textBoxReport.AppendText("Checked with ProxyMaid\n");
+                
+                textBoxReport.AppendText(String.Format("Checked with ProxyMaid, Version {0}\n", AssemblyAttribute.AssemblyVersion));
                 textBoxReport.AppendText("Time out: " + Properties.Settings.Default.ProxyTimeOut + "s\n");
 
                 foreach (string anonymity in anonymitylevels)

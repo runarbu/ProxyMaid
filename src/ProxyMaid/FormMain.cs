@@ -329,6 +329,12 @@ namespace ProxyMaid
             fms.Show();
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAboutBox fms = new FormAboutBox();
+            fms.Show();
+        }
+
 
 
     }
