@@ -34,29 +34,27 @@ namespace ProxyMaid
         {
             while (!shutdown)
             {
-                System.IO.StreamWriter file = null;
+                
 
                 if (_Global.ProxyServers.Count != 0)
                 {
 
-                    string path = _Global.ProxyOutFilePath();
-
                     try
                     {
-
+                        string path = _Global.ProxyOutFilePath();
                         //_Global.log("Writing proxies to file");
-                        
 
-                        file = new System.IO.StreamWriter(path);
 
-                        foreach (ProxyServer server in _Global.ProxyServers.ToList())
-                        {
-                            if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
+                        using (var file = new System.IO.StreamWriter(path)) { 
+
+                            foreach (ProxyServer server in _Global.ProxyServers.ToList())
                             {
-                                file.WriteLine(server.Ip + ":" + server.Port);
+                                if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
+                                {
+                                    file.WriteLine(server.Ip + ":" + server.Port);
+                                }
                             }
                         }
-
 
                         _Form.Invoke((MethodInvoker)delegate
                         {
@@ -67,12 +65,9 @@ namespace ProxyMaid
                     }
                     catch (Exception ex)
                     {
-                        _Global.log("Can not writ to out file '" + path + "': " + ex.Message);
+                        _Global.log("Can not writ to out file: " + ex.Message);
                     }
-                    finally
-                    {
-                        file.Close();
-                    }
+                    
 
                 }
 
