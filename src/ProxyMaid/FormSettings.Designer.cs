@@ -37,6 +37,9 @@
             this.labelProxyOutTime = new System.Windows.Forms.Label();
             this.textBoxProxyOutTime = new System.Windows.Forms.TextBox();
             this.checkBoxUsePublicProxySources = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxProxyReCheck = new System.Windows.Forms.TextBox();
+            this.checkBoxDebugMode = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBoxProxyJudge
@@ -78,7 +81,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(179, 168);
+            this.buttonSave.Location = new System.Drawing.Point(179, 184);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(56, 19);
@@ -89,7 +92,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(271, 168);
+            this.buttonCancel.Location = new System.Drawing.Point(271, 184);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(56, 19);
@@ -101,7 +104,7 @@
             // labelProxyOutTime
             // 
             this.labelProxyOutTime.AutoSize = true;
-            this.labelProxyOutTime.Location = new System.Drawing.Point(19, 89);
+            this.labelProxyOutTime.Location = new System.Drawing.Point(19, 105);
             this.labelProxyOutTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProxyOutTime.Name = "labelProxyOutTime";
             this.labelProxyOutTime.Size = new System.Drawing.Size(161, 13);
@@ -110,7 +113,7 @@
             // 
             // textBoxProxyOutTime
             // 
-            this.textBoxProxyOutTime.Location = new System.Drawing.Point(271, 89);
+            this.textBoxProxyOutTime.Location = new System.Drawing.Point(271, 105);
             this.textBoxProxyOutTime.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxProxyOutTime.Name = "textBoxProxyOutTime";
             this.textBoxProxyOutTime.Size = new System.Drawing.Size(76, 20);
@@ -120,18 +123,48 @@
             // checkBoxUsePublicProxySources
             // 
             this.checkBoxUsePublicProxySources.AutoSize = true;
-            this.checkBoxUsePublicProxySources.Location = new System.Drawing.Point(206, 125);
+            this.checkBoxUsePublicProxySources.Location = new System.Drawing.Point(183, 139);
             this.checkBoxUsePublicProxySources.Name = "checkBoxUsePublicProxySources";
             this.checkBoxUsePublicProxySources.Size = new System.Drawing.Size(144, 17);
             this.checkBoxUsePublicProxySources.TabIndex = 8;
             this.checkBoxUsePublicProxySources.Text = "Use public proxy sources";
             this.checkBoxUsePublicProxySources.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Proxy recheck (minutes)";
+            // 
+            // textBoxProxyReCheck
+            // 
+            this.textBoxProxyReCheck.Location = new System.Drawing.Point(271, 79);
+            this.textBoxProxyReCheck.Name = "textBoxProxyReCheck";
+            this.textBoxProxyReCheck.Size = new System.Drawing.Size(76, 20);
+            this.textBoxProxyReCheck.TabIndex = 10;
+            this.textBoxProxyReCheck.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // checkBoxDebugMode
+            // 
+            this.checkBoxDebugMode.AutoSize = true;
+            this.checkBoxDebugMode.Location = new System.Drawing.Point(183, 162);
+            this.checkBoxDebugMode.Name = "checkBoxDebugMode";
+            this.checkBoxDebugMode.Size = new System.Drawing.Size(165, 17);
+            this.checkBoxDebugMode.TabIndex = 11;
+            this.checkBoxDebugMode.Text = "Debug mode (logs more data)";
+            this.checkBoxDebugMode.UseVisualStyleBackColor = true;
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 214);
+            this.ClientSize = new System.Drawing.Size(362, 221);
+            this.Controls.Add(this.checkBoxDebugMode);
+            this.Controls.Add(this.textBoxProxyReCheck);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxUsePublicProxySources);
             this.Controls.Add(this.textBoxProxyOutTime);
             this.Controls.Add(this.labelProxyOutTime);
@@ -143,7 +176,7 @@
             this.Controls.Add(this.textBoxProxyJudge);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormSettings";
-            this.Text = "Settings";
+            this.Text = "re";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +193,8 @@
         private System.Windows.Forms.Label labelProxyOutTime;
         private System.Windows.Forms.TextBox textBoxProxyOutTime;
         private System.Windows.Forms.CheckBox checkBoxUsePublicProxySources;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxProxyReCheck;
+        private System.Windows.Forms.CheckBox checkBoxDebugMode;
     }
 }

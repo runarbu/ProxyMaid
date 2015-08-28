@@ -18,7 +18,10 @@ namespace ProxyMaid
             textBoxProxyJudge.Text = Properties.Settings.Default.ProxyJudge;
             textBoxProxyTimeOut.Text = Properties.Settings.Default.ProxyTimeOut.ToString();
             textBoxProxyOutTime.Text = Properties.Settings.Default.ProxyOutTime.ToString();
+            textBoxProxyReCheck.Text = Properties.Settings.Default.ProxyReCheck.ToString();
+
             checkBoxUsePublicProxySources.Checked = Properties.Settings.Default.UsePublicProxySources;
+            checkBoxDebugMode.Checked = Properties.Settings.Default.Debug;
 
         }
 
@@ -33,7 +36,10 @@ namespace ProxyMaid
             Properties.Settings.Default.ProxyJudge = textBoxProxyJudge.Text;
             Properties.Settings.Default.ProxyTimeOut = Convert.ToUInt16(textBoxProxyTimeOut.Text);
             Properties.Settings.Default.ProxyOutTime = Convert.ToUInt16(textBoxProxyOutTime.Text);
+            Properties.Settings.Default.ProxyReCheck = Convert.ToUInt16(textBoxProxyReCheck.Text);
+
             Properties.Settings.Default.UsePublicProxySources = checkBoxUsePublicProxySources.Checked;
+            Properties.Settings.Default.Debug = checkBoxDebugMode.Checked;
 
             Properties.Settings.Default.Save();
             this.Close();

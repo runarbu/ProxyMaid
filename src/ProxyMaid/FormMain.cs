@@ -76,6 +76,12 @@ namespace ProxyMaid
             comboBoxProxyMinAnonymity.SelectedIndex = comboBoxProxyMinAnonymity.FindStringExact(Properties.Settings.Default.ProxyMinAnonymity);
 
             trackBar1.Value = 10;
+
+            // Making an etry for manually added proxies
+            ProxySource source = new ProxySource(this, "Added manually", null, null, 0, 0);
+            Global.ProxySources.Add(source);
+
+
             // ToDo: Load old proxies from the out file
 
 
@@ -310,6 +316,17 @@ namespace ProxyMaid
         private void logToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Global.LogToFile = true;
+        }
+
+        private void clearLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void addProxyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAddProxy fms = new FormAddProxy(this, Global);
+            fms.Show();
         }
 
 

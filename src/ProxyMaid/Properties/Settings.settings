@@ -32,5 +32,8 @@
     <Setting Name="ReportType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Text</Value>
     </Setting>
+    <Setting Name="ProxyReCheck" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

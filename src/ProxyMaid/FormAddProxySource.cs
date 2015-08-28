@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ProxyMaid
 {
@@ -24,11 +25,17 @@ namespace ProxyMaid
 
         private void buttonSaveProxies_Click(object sender, EventArgs e)
         {
-            
+
             string[] allLines = textBoxAddProxies.Text.Split('\n');
 
             foreach (string line in allLines)
             {
+
+                if (Regex.IsMatch(line, @"http") == false)
+                {
+                    _Global.log("Skippet incorrect formatted proxy source " + line);
+                    continue;
+                }
 
                 if (_Global.ProxySources.Any(s => s.Url == line) == false) 
                 {

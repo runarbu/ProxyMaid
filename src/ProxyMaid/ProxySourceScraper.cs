@@ -199,7 +199,7 @@ namespace ProxyMaid
                     }
                 }
 
-                // Get public proxy sources
+                // Get public of banned sources
                 banned = getList(Properties.Settings.Default.ProxyBanned);
 
 
@@ -207,14 +207,19 @@ namespace ProxyMaid
             }
 
 
-            _Global.log("Entering main source scraper loop with " + _Global.ProxySources.Count + " sources");
+            _Global.log("Entering main source scraper loop with " + (_Global.ProxySources.Count - 1)+ " sources"); // -1 to not count proxies that was added manualy
 
             while (!shutdown)
             {
 
                 foreach (ProxySource source in _Global.ProxySources.ToList())
                 {
-                    
+
+                    if (source.Url == "Added manually")
+                    {
+                        continue;
+                    }
+
                     if (source.Shudled != default(DateTime) && source.Interval == 0)
                     {
                         if (Properties.Settings.Default.Debug) 
@@ -224,7 +229,7 @@ namespace ProxyMaid
                         continue;
                     }
 
-                    if (source.Shudled != default(DateTime) && DateTime.Compare(source.Shudled, source.Shudled.AddMinutes(source.Interval)) < 0)
+                    if (source.Shudled != default(DateTime) && DateTime.Compare(DateTime.Now, source.Shudled.AddMinutes(source.Interval)) > 0)
                     {
                         if (Properties.Settings.Default.Debug)
                         {
@@ -267,7 +272,7 @@ namespace ProxyMaid
 
                         
                         // method 1: find ip and port separated with a space or tab
-                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t ]+([0-9]+)", @"$1:$2"), banned);
+                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t \xA0]+([0-9]+)", @"$1:$2"), banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 1 from " + source.Url);
 
@@ -277,8 +282,23 @@ namespace ProxyMaid
                         found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+)[\t ]+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)", @"$2:$1"), banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 2 from " + source.Url);
-                        
-                        
+
+                        // http://www.ultraproxies.com/
+                        // method 3: find ip and port separated with a space or tab, and the ip ends in ":"
+                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+):[\t ]+([0-9]+)", @"$1:$2"), banned);
+                        source.Proxies += found;
+                        _Global.log("Extracted " + found.ToString() + " with method 3 from " + source.Url);
+
+                        /*
+                        // More agresive but methods, that may give bad data.
+                        if (found == 0) { 
+                            // http://www.echolink.org/proxylist.jsp
+                            // method 4: find ip and port separated with spmthin other then 0-9
+                            found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[^0-9]+([0-9]+)", @"$1:$2"), banned);
+                            source.Proxies += found;
+                            _Global.log("Extracted " + found.ToString() + " with method 4 from " + source.Url);
+                        }
+                        */
                     }
 
                    

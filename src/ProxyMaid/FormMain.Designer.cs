@@ -56,8 +56,10 @@
             this.setingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addProxiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelThreads = new System.Windows.Forms.Label();
             this.logToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelThreads = new System.Windows.Forms.Label();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addProxyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -87,7 +89,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(589, 296);
+            this.textBox1.Size = new System.Drawing.Size(589, 294);
             this.textBox1.TabIndex = 2;
             // 
             // dataGridView1
@@ -98,7 +100,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(589, 296);
+            this.dataGridView1.Size = new System.Drawing.Size(589, 294);
             this.dataGridView1.TabIndex = 3;
             // 
             // tabControl1
@@ -124,7 +126,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(593, 300);
+            this.tabPage1.Size = new System.Drawing.Size(593, 298);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Proxy servers";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -135,7 +137,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(593, 300);
+            this.tabPage4.Size = new System.Drawing.Size(593, 298);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Proxy sources";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -148,7 +150,7 @@
             this.dataGridViewProxySources.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewProxySources.Name = "dataGridViewProxySources";
             this.dataGridViewProxySources.RowTemplate.Height = 24;
-            this.dataGridViewProxySources.Size = new System.Drawing.Size(593, 300);
+            this.dataGridViewProxySources.Size = new System.Drawing.Size(593, 298);
             this.dataGridViewProxySources.TabIndex = 0;
             this.dataGridViewProxySources.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProxySources_CellContentClick);
             this.dataGridViewProxySources.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewProxySources_RowsAdded);
@@ -160,7 +162,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(593, 300);
+            this.tabPage2.Size = new System.Drawing.Size(593, 298);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -336,8 +338,10 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setingsToolStripMenuItem,
             this.addProxiesToolStripMenuItem,
+            this.addProxyToolStripMenuItem,
             this.reportToolStripMenuItem,
-            this.logToFileToolStripMenuItem});
+            this.logToFileToolStripMenuItem,
+            this.clearLogToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -363,6 +367,13 @@
             this.reportToolStripMenuItem.Text = "Report";
             this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
+            // logToFileToolStripMenuItem
+            // 
+            this.logToFileToolStripMenuItem.Name = "logToFileToolStripMenuItem";
+            this.logToFileToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.logToFileToolStripMenuItem.Text = "Log to file";
+            this.logToFileToolStripMenuItem.Click += new System.EventHandler(this.logToFileToolStripMenuItem_Click);
+            // 
             // labelThreads
             // 
             this.labelThreads.AutoSize = true;
@@ -372,12 +383,19 @@
             this.labelThreads.TabIndex = 8;
             this.labelThreads.Text = "Threads:";
             // 
-            // logToFileToolStripMenuItem
+            // clearLogToolStripMenuItem
             // 
-            this.logToFileToolStripMenuItem.Name = "logToFileToolStripMenuItem";
-            this.logToFileToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.logToFileToolStripMenuItem.Text = "Log to file";
-            this.logToFileToolStripMenuItem.Click += new System.EventHandler(this.logToFileToolStripMenuItem_Click);
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
+            // 
+            // addProxyToolStripMenuItem
+            // 
+            this.addProxyToolStripMenuItem.Name = "addProxyToolStripMenuItem";
+            this.addProxyToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.addProxyToolStripMenuItem.Text = "Add proxy";
+            this.addProxyToolStripMenuItem.Click += new System.EventHandler(this.addProxyToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -444,6 +462,8 @@
         private System.Windows.Forms.Label labelProxyOutFilePathInfo;
         private System.Windows.Forms.Label labelProxyOutFilePath;
         private System.Windows.Forms.ToolStripMenuItem logToFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addProxyToolStripMenuItem;
     }
 }
 

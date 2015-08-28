@@ -71,8 +71,7 @@ namespace ProxyMaid
                         return -2;
                     }
 
-
-                    if (server.Shudled == default(DateTime) || DateTime.Compare(server.Shudled, server.Shudled.AddMinutes(15)) > 0)
+                    if (server.Shudled == default(DateTime) || DateTime.Compare(DateTime.Now, server.Shudled.AddMinutes(Properties.Settings.Default.ProxyReCheck)) > 0)
                     {
                         server.Shudled = DateTime.Now;
 
@@ -97,7 +96,7 @@ namespace ProxyMaid
                 {
                     _Form.Invoke((MethodInvoker)delegate
                     {
-                        _textBox1.AppendText(text + "\n");
+                        _textBox1.AppendText(text + "\r\n");
                     });
                 }
                 catch (Exception ex)
@@ -116,7 +115,7 @@ namespace ProxyMaid
                     {
                         _Form.Invoke((MethodInvoker)delegate
                         {
-                            _textBox1.AppendText("Can not log to file: " + ex.Message + "\n");
+                            _textBox1.AppendText("Can not log to file: " + ex.Message + "\r\n");
                         });
 
                     }

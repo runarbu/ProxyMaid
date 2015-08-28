@@ -142,5 +142,17 @@ namespace ProxyMaid.Properties {
                 this["ReportType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int ProxyReCheck {
+            get {
+                return ((int)(this["ProxyReCheck"]));
+            }
+            set {
+                this["ProxyReCheck"] = value;
+            }
+        }
     }
 }
