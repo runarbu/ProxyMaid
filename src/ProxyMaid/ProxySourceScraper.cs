@@ -272,7 +272,7 @@ namespace ProxyMaid
 
                         
                         // method 1: find ip and port separated with a space or tab
-                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t \xA0]+([0-9]+)", @"$1:$2"), banned);
+                        found = ExtractProxies(source.Url, Regex.Replace(result, @"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)[\t ]+([0-9]+)", @"$1:$2"), banned);
                         source.Proxies += found;
                         _Global.log("Extracted " + found.ToString() + " with method 1 from " + source.Url);
 
