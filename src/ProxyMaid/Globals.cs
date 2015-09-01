@@ -57,23 +57,62 @@ namespace ProxyMaid
         {
             lock (ProxyServers)
             {
-                int i = 0;
+                int i;
 
                 if (!running) {
                     return -1;
                 }
 
+                if (!ProxyCheckerContinue())
+                {
+                    return -2;
+                }
+
+                // Go troght all proxy servers and sellect with to test.
+
+                // Priorety 1: working proxy serers that have not been testet sines ProxyReCheck time
+                i = 0;
                 foreach (ProxyServer server in ProxyServers.ToList())
                 {
 
-                    if (!ProxyCheckerContinue())
-                    {
-                        return -2;
-                    }
-
-                    if (server.Shudled == default(DateTime) || DateTime.Compare(DateTime.Now, server.Shudled.AddMinutes(Properties.Settings.Default.ProxyReCheck)) > 0)
+                    if (server.Shudled != default(DateTime) && DateTime.Compare(DateTime.Now, server.Shudled.AddMinutes(Properties.Settings.Default.ProxyReCheck)) > 0 && server.Status.Substring(0, 2) == "Ok")
                     {
                         server.Shudled = DateTime.Now;
+                        debug("ProxyServersToCheck: Found pri 1. Last checked " + server.Shudled.ToShortTimeString() + " with status " + server.Status);
+
+                        return i;
+                    }
+
+                    i++;
+
+                }
+
+                // Priorety 2: new proxy serrvers
+                i = 0;
+                foreach (ProxyServer server in ProxyServers.ToList())
+                {
+
+                    if (server.Shudled == default(DateTime))
+                    {
+                        server.Shudled = DateTime.Now;
+                        debug("ProxyServersToCheck: Found pri 2. Newer checked. ");
+
+                        return i;
+                    }
+
+                    i++;
+
+                }
+
+                // Priorety 3: old proxy serrvers that was not ok when we testet them last time
+                i = 0;
+                foreach (ProxyServer server in ProxyServers.ToList())
+                {
+
+                    if (server.Shudled != default(DateTime) && DateTime.Compare(DateTime.Now, server.Shudled.AddMinutes(Properties.Settings.Default.ProxyReCheck)) > 0 && server.Status.Substring(0, 2) != "Ok")
+                    {
+                        server.Shudled = DateTime.Now;
+                        debug("ProxyServersToCheck: Found pri 3. Last checked " + server.Shudled.ToShortTimeString() + " with status " + server.Status);
 
                         return i;
                     }
@@ -86,6 +125,14 @@ namespace ProxyMaid
             }
         }
 
+
+        public void debug(string text)
+        {
+            //if (Properties.Settings.Default.Debug)
+            //{
+                log(text);
+            //}
+        }
 
         public void log(string text)
         {
