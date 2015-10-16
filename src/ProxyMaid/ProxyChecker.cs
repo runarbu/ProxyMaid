@@ -8,6 +8,8 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Runtime.ExceptionServices;
+using System.Security;
 
 #if USE_RESTSHARP
 using RestSharp;
@@ -27,6 +29,9 @@ namespace ProxyMaid
         }
 
         // This method will be called when the thread is started. 
+        // Code below is needed to cach a very rar "System.AccessViolationException" axseprion. http://stackoverflow.com/questions/3469368/how-to-handle-accessviolationexception
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
         public void DoWork()
         {
 
@@ -117,6 +122,7 @@ namespace ProxyMaid
                  
 
                     var request = new RestRequest("", Method.GET);
+                    request.AddHeader("Accept", "text/html");
 
                     // execute the request
                     IRestResponse response = client.Execute(request);
