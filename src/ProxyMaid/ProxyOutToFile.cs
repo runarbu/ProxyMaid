@@ -45,13 +45,16 @@ namespace ProxyMaid
                         //_Global.log("Writing proxies to file");
 
 
-                        using (var file = new System.IO.StreamWriter(path)) { 
+                        using (var file = new System.IO.StreamWriter(path)) {
 
-                            foreach (ProxyServer server in _Global.ProxyServers.ToList())
+                            lock (_Global.ProxyServers)
                             {
-                                if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
+                                foreach (ProxyServer server in _Global.ProxyServers.ToList())
                                 {
-                                    file.WriteLine(server.Ip + ":" + server.Port);
+                                    if (server.Status.Substring(0, 2) == "Ok" && AnonymityToInt(server.Anonymity) >= AnonymityToInt(Properties.Settings.Default.ProxyMinAnonymity))
+                                    {
+                                        file.WriteLine(server.Ip + ":" + server.Port);
+                                    }
                                 }
                             }
                         }
